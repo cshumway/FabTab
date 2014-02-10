@@ -21,7 +21,6 @@ namespace FabTab.DragDrop
 
         private FabTabControl _tabControl;
 
-        
         #region IDragSourceAdvisor Members
 
         public UIElement SourceUI
@@ -76,7 +75,7 @@ namespace FabTab.DragDrop
             //if ((finalEffects & DragDropEffects.Move) == DragDropEffects.Move)
             //{
                 //TODO: should I have something here????
-                
+
             //}
         }
 

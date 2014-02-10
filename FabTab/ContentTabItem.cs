@@ -27,9 +27,8 @@ namespace FabTab
 
         public ContentTabItem()
         {
-            
+
         }
 
-        
     }
 }

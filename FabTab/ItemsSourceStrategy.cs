@@ -18,7 +18,6 @@ namespace FabTab
             _tabControl = tabControl;
         }
 
-        
         #region IFabTabItemsStrategy Members
 
         public void CloseTab(System.Windows.Controls.TabItem tab)
@@ -112,14 +111,12 @@ namespace FabTab
             }
 
             updateAfterRemove.Invoke(e);
-            
+
             if (e.RemovedItems.Count > 0)
             {
                 _tabControl.HiddenContent.Items.Add(e.RemovedItems[0]);
             }
         }
-
-        
 
         #endregion
     }

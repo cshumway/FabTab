@@ -19,8 +19,10 @@ namespace FabTab
     /// </summary>
     public class ImageButton : Button
     {
-        public static readonly DependencyProperty TitleProperty = DependencyProperty.Register("Title", typeof(object),
-                                                                                                            typeof(ImageButton));
+        public static readonly DependencyProperty TitleProperty = DependencyProperty.Register(
+            "Title",
+            typeof(object),
+            typeof(ImageButton));
 
         public object Title
         {
@@ -30,7 +32,7 @@ namespace FabTab
                 this.SetValue(TitleProperty, value);
             }
         }
-        
+
         static ImageButton()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ImageButton), new FrameworkPropertyMetadata(typeof(ImageButton)));

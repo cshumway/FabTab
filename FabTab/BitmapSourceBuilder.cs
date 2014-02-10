@@ -12,7 +12,6 @@ namespace FabTab
 {
     internal class BitmapSourceBuilder
     {
-        
         public BitmapSource GetBitmapSourceFromElement(FrameworkElement element)
         {
             FabTabItem fabTabItem = element as FabTabItem;

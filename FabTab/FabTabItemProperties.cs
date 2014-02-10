@@ -14,19 +14,14 @@ namespace FabTab
             return (Image)fabTabItem.GetValue(FabTabItemImageProperty);
         }
 
-        public static void SetFabTabItemImage(
-          FabTabItem fabTabItem, Image value)
+        public static void SetFabTabItemImage(FabTabItem fabTabItem, Image value)
         {
             fabTabItem.SetValue(FabTabItemImageProperty, value);
         }
 
-        public static readonly DependencyProperty FabTabItemImageProperty =
-            DependencyProperty.RegisterAttached(
+        public static readonly DependencyProperty FabTabItemImageProperty = DependencyProperty.RegisterAttached(
             "FabTabItemImage",
             typeof(Image),
             typeof(FabTabItemProperties));
-
-
-
     }
 }

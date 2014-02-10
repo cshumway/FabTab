@@ -63,7 +63,7 @@ namespace FabTab
         private bool _allowDragAndDropTabReordering = true;
         private IFabTabItemsStrategy _itemsStrategy;
 
-        
+
         public bool ShowContentsTab
         {
             get { return _showContentsTab; }
@@ -192,7 +192,7 @@ namespace FabTab
             }
             return (item is FabTabItem);
         }
-                        
+
 
         public bool ShowToolTipImages
         {
@@ -204,7 +204,6 @@ namespace FabTab
             {
                 this.SetValue(ShowToolTipImagesProperty, value);
             }
-
         }
 
         protected override DependencyObject GetContainerForItemOverride()
@@ -218,7 +217,7 @@ namespace FabTab
             {
                 SetupItemsStrategy();
             }
-            
+
             if (_contentTabView != null)
             {
                 ContentTabItem tabItem = CreateContentTabItem();
@@ -353,7 +352,7 @@ namespace FabTab
             //need to make sure that newly added or removed views are taken out of their hidden place
             //in the visual tree
             ForceItemRender();
-                                    
+
             if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
             {
                 GetAddedFabTabItemAndWireUpClosingEvent(e);
@@ -377,7 +376,7 @@ namespace FabTab
             }
 
             _itemsChanging = false;
-            
+
         }
 
         private void SetupItemsStrategy()

@@ -38,7 +38,7 @@ namespace FabTab
         {
             get { return this.wrapPanel.Children; }
         }
-                
+
         public ContentTabView(FabTabControl tabControl)
         {
             InitializeComponent();
@@ -52,7 +52,6 @@ namespace FabTab
         {
             _views = views;
             UpdateViews();
-
         }
 
         void ContentTabView_Loaded(object sender, RoutedEventArgs e)
@@ -123,6 +122,5 @@ namespace FabTab
             }
         }
 
-       
     }
 }

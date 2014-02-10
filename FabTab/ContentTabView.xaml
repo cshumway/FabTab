@@ -3,11 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     >
     <UserControl.Resources>
-                
-        
-        
-        
-        
     </UserControl.Resources>
     <ScrollViewer>
         <WrapPanel x:Name="wrapPanel"/>

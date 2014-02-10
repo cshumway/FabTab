@@ -12,17 +12,17 @@ namespace FabTab.DragDrop
     {
         private static readonly string DragOffsetFormat = "DnD.DragOffset";
 
-        public static readonly DependencyProperty DragSourceAdvisorProperty =
-            DependencyProperty.RegisterAttached("DragSourceAdvisor", typeof(IDragSourceAdvisor),
-                                                typeof(DragDropManager),
-                                                new FrameworkPropertyMetadata(
-                                                    new PropertyChangedCallback(OnDragSourceAdvisorChanged)));
+        public static readonly DependencyProperty DragSourceAdvisorProperty = DependencyProperty.RegisterAttached(
+            "DragSourceAdvisor",
+            typeof(IDragSourceAdvisor),
+            typeof(DragDropManager),
+            new FrameworkPropertyMetadata(new PropertyChangedCallback(OnDragSourceAdvisorChanged)));
 
-        public static readonly DependencyProperty DropTargetAdvisorProperty =
-            DependencyProperty.RegisterAttached("DropTargetAdvisor", typeof(IDropTargetAdvisor),
-                                                typeof(DragDropManager),
-                                                new FrameworkPropertyMetadata(
-                                                    new PropertyChangedCallback(OnDropTargetAdvisorChanged)));
+        public static readonly DependencyProperty DropTargetAdvisorProperty = DependencyProperty.RegisterAttached(
+            "DropTargetAdvisor",
+            typeof(IDropTargetAdvisor),
+            typeof(DragDropManager),
+            new FrameworkPropertyMetadata(new PropertyChangedCallback(OnDropTargetAdvisorChanged)));
 
         private static Point _adornerPosition;
 
@@ -72,8 +72,7 @@ namespace FabTab.DragDrop
 
         #region Property Change handlers
 
-        private static void OnDragSourceAdvisorChanged(DependencyObject depObj,
-                                                       DependencyPropertyChangedEventArgs args)
+        private static void OnDragSourceAdvisorChanged(DependencyObject depObj, DependencyPropertyChangedEventArgs args)
         {
             UIElement sourceElt = depObj as UIElement;
             if (args.NewValue != null && args.OldValue == null)
@@ -94,8 +93,7 @@ namespace FabTab.DragDrop
             }
         }
 
-        private static void OnDropTargetAdvisorChanged(DependencyObject depObj,
-                                                       DependencyPropertyChangedEventArgs args)
+        private static void OnDropTargetAdvisorChanged(DependencyObject depObj, DependencyPropertyChangedEventArgs args)
         {
             UIElement targetElt = depObj as UIElement;
             if (args.NewValue != null && args.OldValue == null)
@@ -123,14 +121,14 @@ namespace FabTab.DragDrop
         #endregion
 
         /* ____________________________________________________________________
-		 *		Drop Target events 
-		 * ____________________________________________________________________
-		 */
+         *      Drop Target events
+         * ____________________________________________________________________
+         */
 
         private static void DropTarget_PreviewDrop(object sender, DragEventArgs e)
         {
             UpdateEffects(e);
-            
+
             Point dropPoint = e.GetPosition(sender as UIElement);
 
             // Calculate displacement for (Left, Top)
@@ -208,7 +206,7 @@ namespace FabTab.DragDrop
         }
 
         /* ____________________________________________________________________
-         *		Drag Source events 
+         *     Drag Source events
          * ____________________________________________________________________
          */
 
@@ -275,7 +273,7 @@ namespace FabTab.DragDrop
         }
 
         /* ____________________________________________________________________
-         *		Utility functions
+         *     Utility functions
          * ____________________________________________________________________
          */
 

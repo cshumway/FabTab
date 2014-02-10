@@ -35,8 +35,6 @@ namespace FabTab
                 Equation = this.Equation
             };
         }
-             
-                
 
         protected override Thickness GetCurrentValueCore(Thickness defaultOriginValue, Thickness defaultDestinationValue, AnimationClock animationClock)
         {
@@ -48,7 +46,7 @@ namespace FabTab
             double topDelta = to.Top - from.Top;
             double rightDelta = to.Right - from.Right;
             double bottomDelta = to.Bottom - from.Bottom;
-            
+
             double duration = this.Duration.TimeSpan.TotalMilliseconds;
 
             double leftResult = EasingUtilities.CalculateCurrentValue(time, from.Left, leftDelta, duration, this.Equation);
@@ -61,6 +59,5 @@ namespace FabTab
             return returnThickness;
         }
 
-        
     }
 }

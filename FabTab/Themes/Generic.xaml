@@ -8,16 +8,13 @@
     xmlns:diagnostics="clr-namespace:System.Diagnostics;assembly=WindowsBase">
 
     <dd:FabTabDragDropAdvisor x:Key="advisor"/>
-    
-    
+
     <Style x:Key="ImageButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="Height" Value="150"/>
         <Setter Property="Width" Value="200"/>
         <Setter Property="Margin" Value="15,15,15,15"/>
     </Style>
 
-    
-        
     <Style x:Key="TabItemFocusVisual">
         <Setter Property="Control.Template">
             <Setter.Value>
@@ -74,7 +71,7 @@
             </Setter.Value>
         </Setter>
     </Style>-->
-    
+
     <Style x:Key="CloseButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="FontSize" Value="8"/>
         <Setter Property="Content" Value="X"/>
@@ -83,12 +80,12 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="BorderBrush" Value="Orange"/>
         <Setter Property="Background" Value="Green"/>
-        
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Name="customBorder" CornerRadius="2" BorderThickness="0" BorderBrush="Transparent"
-                                Background="Transparent" >
+                            Background="Transparent" >
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                     <ControlTemplate.Triggers>
@@ -99,8 +96,7 @@
                             <Setter Property="FontWeight" Value="Bold"/>
                         </Trigger>
                         <Trigger Property="Button.IsPressed" Value="True">
-                            <Setter TargetName="customBorder" Property="Background" 
-                                        Value="DarkGray" />
+                            <Setter TargetName="customBorder" Property="Background" Value="DarkGray" />
                             <Setter Property="Foreground" Value="White"/>
                             <Setter Property="FontWeight" Value="Bold"/>
                             <Setter Property="BitmapEffect">
@@ -114,11 +110,8 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
 
     <Style TargetType="{x:Type local:FabTabItem}">
-        
-              
         <Setter Property="FocusVisualStyle" Value="{StaticResource TabItemFocusVisual}"/>
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="Padding" Value="6,1,6,1"/>
@@ -129,54 +122,38 @@
         <Setter Property="ShowCloseButton" Value="{Binding Path=ShowTabCloseButtons, RelativeSource={RelativeSource AncestorType={x:Type local:FabTabControl}}}"/>
         <Setter Property="dd:DragDropManager.DragSourceAdvisor" Value="{StaticResource advisor}"/>
         <Setter Property="dd:DragDropManager.DropTargetAdvisor" Value="{StaticResource advisor}"/>
-        
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:FabTabItem}">
                     <ControlTemplate.Resources>
                         <SolidColorBrush x:Key="SolidBorderBrush" Color="#888" />
-
-
                         <Style TargetType="{x:Type ToolTip}" >
                             <Setter Property="OverridesDefaultStyle" Value="true"/>
                             <Setter Property="HasDropShadow" Value="True"/>
                             <Setter Property="Margin" Value="0,0,0,0"/>
                             <Setter Property="Padding" Value="0"/>
-                            
-                            
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="ToolTip">
-                                        <Border Name="Border"
-                  Background="LightGray"
-                  BorderBrush="{StaticResource SolidBorderBrush}"
-                  BorderThickness="2"
-                  >
-                                                    <ContentPresenter
-                    Margin="0,0,0,0" 
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top" />
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="HasDropShadow" Value="true">
-                                                        <Setter TargetName="Border" Property="CornerRadius" Value="4"/>
-                                                        <Setter TargetName="Border" Property="SnapsToDevicePixels" Value="true"/>
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                        
-                       
-
+                                        <Border Name="Border" Background="LightGray" BorderBrush="{StaticResource SolidBorderBrush}" BorderThickness="2">
+                                            <ContentPresenter Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="HasDropShadow" Value="true">
+                                                <Setter TargetName="Border" Property="CornerRadius" Value="4"/>
+                                                <Setter TargetName="Border" Property="SnapsToDevicePixels" Value="true"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
                     </ControlTemplate.Resources>
                     <Grid SnapsToDevicePixels="true">
                         <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1,1,1,0" Padding="{TemplateBinding Padding}">
                             <DockPanel SnapsToDevicePixels="True">
-
-                                <Button Name="PART_closeButton" DockPanel.Dock="Right"
-                                        Margin="4,0,0,0"
+                                <Button Name="PART_closeButton" DockPanel.Dock="Right" Margin="4,0,0,0"
                                         Style="{Binding Path=CloseButtonStyle, RelativeSource={RelativeSource AncestorType={x:Type local:FabTabControl}}}"/>
                                 <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                                   HorizontalAlignment="{Binding Path=HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" 
@@ -186,20 +163,16 @@
                                                   RecognizesAccessKey="True"
                                                   DockPanel.Dock="Left"
                                                   />
-
                             </DockPanel>
-
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Background" TargetName="Bd" Value="{StaticResource TabItemHotBackground}"/>
-
                         </Trigger>
                         <Trigger Property="IsSelected" Value="true">
                             <Setter Property="Panel.ZIndex" Value="1"/>
                             <Setter Property="Background" TargetName="Bd" Value="{StaticResource TabItemSelectedBackground}"/>
-                           
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -216,7 +189,6 @@
                                 <Condition Binding="{Binding RelativeSource={x:Static RelativeSource.Self},Path=IsMouseOver}" Value="true"/>
                             </MultiDataTrigger.Conditions>
                             <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(local:FabTabItemProperties.FabTabItemImage)}"/>
-                            
                         </MultiDataTrigger>
 
                         <Trigger Property="TabStripPlacement" Value="Bottom">
@@ -269,10 +241,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
     </Style>
-
-
 
 
     <Style TargetType="{x:Type local:FabTabControl}">
@@ -315,20 +284,15 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type ToggleButton}">
-                                        <Microsoft_Windows_Themes:ButtonChrome 
-						SnapsToDevicePixels="true" x:Name="Chrome" 
-						Background="{TemplateBinding Background}" 
-						BorderBrush="{TemplateBinding BorderBrush}" 
-						RenderMouseOver="{TemplateBinding IsMouseOver}" 
-						RenderPressed="{TemplateBinding IsPressed}">
+                                        <Microsoft_Windows_Themes:ButtonChrome x:Name="Chrome" SnapsToDevicePixels="true" 
+                                                                               Background="{TemplateBinding Background}" 
+                                                                               BorderBrush="{TemplateBinding BorderBrush}" 
+                                                                               RenderMouseOver="{TemplateBinding IsMouseOver}" 
+                                                                               RenderPressed="{TemplateBinding IsPressed}">
                                             <Grid HorizontalAlignment="Center" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
-                                                <Path HorizontalAlignment="Center" 
-								Margin="0,0,0,0" 
-								x:Name="Arrow" 
-								VerticalAlignment="Center"
-								Stroke="Black" 
-								StrokeThickness="1"
-								Data="{StaticResource DownArrowGeometry}"/>
+                                                <Path x:Name="Arrow" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                      Margin="0,0,0,0" Stroke="Black" StrokeThickness="1"
+                                                      Data="{StaticResource DownArrowGeometry}"/>
                                             </Grid>
                                         </Microsoft_Windows_Themes:ButtonChrome>
                                         <ControlTemplate.Triggers>
@@ -402,17 +366,14 @@
                                     </Microsoft_Windows_Themes:SystemDropShadowChrome>
                                 </Popup>
                                 <Microsoft_Windows_Themes:ListBoxChrome x:Name="Border" Grid.ColumnSpan="2" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" RenderFocused="{TemplateBinding IsKeyboardFocusWithin}" RenderMouseOver="{TemplateBinding IsMouseOver}"/>
-                                <TextBox 
-				HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-				VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" 
-				Margin="{TemplateBinding Padding}" 
-				x:Name="PART_EditableTextBox" 
-				Style="{StaticResource ComboBoxEditableTextBox}" 
-				IsReadOnly="{Binding Path=IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
-				/>
-                                <ToggleButton Style="{StaticResource ComboBoxToggleButton}" 
-				Grid.Column="1" 
-				IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <TextBox x:Name="PART_EditableTextBox" Style="{StaticResource ComboBoxEditableTextBox}" 
+                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                         Margin="{TemplateBinding Padding}" 
+                                         IsReadOnly="{Binding Path=IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
+                                         />
+                                <ToggleButton Style="{StaticResource ComboBoxToggleButton}" Grid.Column="1" 
+                                              IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsKeyboardFocusWithin" Value="true">
@@ -455,7 +416,6 @@
                                     <ControlTemplate TargetType="{x:Type ComboBox}">
                                         <Grid SnapsToDevicePixels="true" x:Name="MainGrid">
                                             <Grid.ColumnDefinitions>
-
                                                 <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
                                             </Grid.ColumnDefinitions>
                                             <Popup AllowsTransparency="true" IsOpen="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Margin="1" x:Name="PART_Popup" Grid.ColumnSpan="2">
@@ -467,18 +427,18 @@
                                                     </Border>
                                                 </Microsoft_Windows_Themes:SystemDropShadowChrome>
                                             </Popup>
-                                            <ToggleButton Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" Style="{StaticResource ComboBoxReadonlyToggleButton}" 
-							Grid.ColumnSpan="1" Grid.Column="0" 
-							IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                            <ToggleButton Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                                                          Style="{StaticResource ComboBoxReadonlyToggleButton}" Grid.ColumnSpan="1" Grid.Column="0" 
+                                                          IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
                                             <ContentPresenter Visibility="Hidden"
-							IsHitTestVisible="false" 
-							SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-							HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-							Margin="{TemplateBinding Padding}" 
-							VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
-							Content="{TemplateBinding SelectionBoxItem}" 
-							ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" 
-							ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
+                                                              IsHitTestVisible="false" 
+                                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                              Margin="{TemplateBinding Padding}" 
+                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                                              Content="{TemplateBinding SelectionBoxItem}" 
+                                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" 
+                                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
                                         </Grid>
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
@@ -512,9 +472,8 @@
 
                         <!--End ComboBox default style-->
 
-
-
                     </ControlTemplate.Resources>
+
                     <Grid ClipToBounds="true" SnapsToDevicePixels="true" KeyboardNavigation.TabNavigation="Local">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition x:Name="ColumnDefinition0"/>
@@ -525,8 +484,9 @@
                             <RowDefinition Height="*" x:Name="RowDefinition1"/>
                         </Grid.RowDefinitions>
                         <local:FabTabPanel Margin="2,2,2,0" x:Name="HeaderPanel" Grid.Column="0" Grid.Row="0" IsItemsHost="true" Panel.ZIndex="1" KeyboardNavigation.TabIndex="1"/>
-                        <Border x:Name="ContentPanel" Grid.Column="0" Grid.Row="1" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
-
+                        <Border x:Name="ContentPanel" Grid.Column="0" Grid.Row="1" Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -534,25 +494,13 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
-
-                                
-                                <!--might need some testing here.  We don't want this to affect
-                                the size of the screen-->
-                                <ContentPresenter Grid.Row="0" Grid.Column="0" 
-                                                  Margin="0,0,0,0" 
-                                                  ContentSource="HiddenContent"
-                                                  x:Name="PART_HiddenContentHost"
-                                                  Visibility="Hidden">
-
+                                <!--might need some testing here.  We don't want this to affect the size of the screen-->
+                                <ContentPresenter x:Name="PART_HiddenContentHost" Grid.Row="0" Grid.Column="0" 
+                                                  Margin="0,0,0,0" ContentSource="HiddenContent" Visibility="Hidden">
                                 </ContentPresenter>
-
-                                <ContentPresenter Grid.Row="0" Grid.Column="0" 
-                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Margin="{TemplateBinding Padding}" 
-                                                  x:Name="PART_SelectedContentHost" 
-                                                  ContentSource="SelectedContent"
-                                                  OpacityMask="{TemplateBinding ContentOpacityMask}"/>
-                                
-                                
+                                <ContentPresenter x:Name="PART_SelectedContentHost"  Grid.Row="0" Grid.Column="0" 
+                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Margin="{TemplateBinding Padding}" 
+                                                  ContentSource="SelectedContent" OpacityMask="{TemplateBinding ContentOpacityMask}"/>
                             </Grid>
                         </Border>
 
@@ -574,7 +522,7 @@
                                 </BeginStoryboard>
                             </MultiDataTrigger.EnterActions>
                         </MultiDataTrigger>
-                                                
+
                         <Trigger Property="TabStripPlacement" Value="Bottom">
                             <Setter Property="Grid.Row" TargetName="HeaderPanel" Value="1"/>
                             <Setter Property="Grid.Row" TargetName="ContentPanel" Value="0"/>
@@ -614,7 +562,6 @@
     </Style>
 
 
-
     <Style TargetType="{x:Type local:ContentTabItem}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource TabItemFocusVisual}"/>
         <Setter Property="Foreground" Value="Black"/>
@@ -627,8 +574,6 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
                     <ControlTemplate.Resources>
-
-
                     </ControlTemplate.Resources>
                     <Grid SnapsToDevicePixels="true">
                         <Border x:Name="Bd" Background="{TemplateBinding Background}" 
@@ -645,7 +590,6 @@
                                                   VerticalAlignment="{Binding Path=VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" 
                                                   ContentSource="Header" 
                                                   RecognizesAccessKey="True"/>
-
                             </DockPanel>
                         </Border>
                     </Grid>
@@ -653,7 +597,6 @@
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Background" TargetName="Bd" Value="{StaticResource TabItemHotBackground}"/>
                         </Trigger>
-
                         <Trigger Property="IsSelected" Value="true">
                             <Setter Property="Panel.ZIndex" Value="1"/>
                             <Setter Property="Background" TargetName="Bd" Value="{StaticResource TabItemSelectedBackground}"/>

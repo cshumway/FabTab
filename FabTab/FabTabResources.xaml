@@ -20,7 +20,7 @@
 
 
     <ContentControl Height="16" Width="20" x:Key="DefaultContentTabHeader"
-		                        Style="{StaticResource ContentTabMouseOverStyle}" ToolTip="Content Tab">
+                    Style="{StaticResource ContentTabMouseOverStyle}" ToolTip="Content Tab">
         <Grid Height="16" Width="20" Margin="0,0,0,0">
             <Grid.Resources>
                 <Style TargetType="{x:Type Rectangle}">

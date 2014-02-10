@@ -63,7 +63,6 @@ namespace FabTab
                     _tabControl.UpdateLayout();
                 }
             });
-                        
         }
 
         private void ReselectCorrectTab(int indexToSelect)

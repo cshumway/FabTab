@@ -91,7 +91,7 @@ namespace FabTab
 
         //}
 
-      
+
         void FabTabItem_Loaded(object sender, RoutedEventArgs e)
         {
             //need to unwire loaded otherwise we can wire up our event handler for click
@@ -127,8 +127,8 @@ namespace FabTab
         {
             this.RaiseEvent(e);
         }
-                
+
     }
 
-    
+
 }
