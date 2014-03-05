@@ -91,7 +91,7 @@
         </LinearGradientBrush>
 
         <ContentControl Height="16" Width="20" x:Key="CustomContentTabHeader"
-		                        Style="{StaticResource ContentTabMouseOverStyle}" ToolTip="Customized Content Tab">
+                        Style="{StaticResource ContentTabMouseOverStyle}" ToolTip="Customized Content Tab">
             <Grid Height="16" Width="20" Margin="0,0,0,0">
                 <Grid.Resources>
                     <Style TargetType="{x:Type Rectangle}">

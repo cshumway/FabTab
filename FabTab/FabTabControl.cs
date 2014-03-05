@@ -17,6 +17,7 @@ using System.Collections.Specialized;
 using System.Windows.Controls.Primitives;
 using FabTab.DragDrop;
 using FabTab.Extensions;
+using System.Diagnostics;
 
 namespace FabTab
 {
@@ -25,39 +26,63 @@ namespace FabTab
     [TemplatePart(Name = "HeaderPanel", Type = typeof(TabPanel))]
     public class FabTabControl : TabControl
     {
-
         public static readonly DependencyProperty CloseButtonStyleProperty = DependencyProperty.Register(
-                        "CloseButtonStyle", typeof(Style), typeof(FabTabControl));
+            "CloseButtonStyle",
+            typeof(Style),
+            typeof(FabTabControl));
 
         public static readonly DependencyProperty ContentTabImageButtonStyleProperty = DependencyProperty.Register(
-                        "ContentTabImageButtonStyle", typeof(Style), typeof(FabTabControl));
+            "ContentTabImageButtonStyle",
+            typeof(Style),
+            typeof(FabTabControl));
 
         public static readonly DependencyProperty ContentTabHeaderContentProperty = DependencyProperty.Register(
-                        "ContentTabHeaderContent", typeof(FrameworkElement), typeof(FabTabControl));
+            "ContentTabHeaderContent",
+            typeof(FrameworkElement),
+            typeof(FabTabControl));
 
         public static readonly DependencyProperty ContentTabHeaderComboBoxStyleProperty = DependencyProperty.Register(
-                        "ContentTabHeaderComboBoxStyle", typeof(Style), typeof(FabTabControl));
+            "ContentTabHeaderComboBoxStyle",
+            typeof(Style),
+            typeof(FabTabControl));
 
-        public static readonly DependencyProperty HiddenContentProperty = DependencyProperty.Register("HiddenContent", typeof(ItemsControl),
-                                                                                                            typeof(FabTabControl));
+        public static readonly DependencyProperty HiddenContentProperty = DependencyProperty.Register(
+            "HiddenContent",
+            typeof(ItemsControl),
+            typeof(FabTabControl));
 
-        public static readonly DependencyProperty ShowToolTipImagesProperty = DependencyProperty.Register("ShowToolTipImages", typeof(bool),
-                        typeof(FabTabControl), new PropertyMetadata(true));
+        public static readonly DependencyProperty ShowToolTipImagesProperty = DependencyProperty.Register(
+            "ShowToolTipImages",
+            typeof(bool),
+            typeof(FabTabControl),
+            new PropertyMetadata(true));
 
-        public static readonly DependencyProperty ShowDefaultTransitionAnimationProperty = DependencyProperty.Register("ShowDefaultTransitionAnimation", typeof(bool),
-            typeof(FabTabControl), new PropertyMetadata(true));
+        public static readonly DependencyProperty ShowDefaultTransitionAnimationProperty = DependencyProperty.Register(
+            "ShowDefaultTransitionAnimation",
+            typeof(bool),
+            typeof(FabTabControl),
+            new PropertyMetadata(true));
 
-        public static readonly DependencyProperty ContentOpacityMaskProperty = DependencyProperty.Register("ContentOpacityMask", typeof(Brush),
-                        typeof(FabTabControl));
+        public static readonly DependencyProperty ContentOpacityMaskProperty = DependencyProperty.Register(
+            "ContentOpacityMask",
+            typeof(Brush),
+            typeof(FabTabControl));
 
-        public static readonly DependencyProperty DidSelectionChangeProperty = DependencyProperty.Register("DidSelectionChange", typeof(bool),
-                        typeof(FabTabControl));
+        public static readonly DependencyProperty DidSelectionChangeProperty = DependencyProperty.Register(
+            "DidSelectionChange",
+            typeof(bool),
+            typeof(FabTabControl));
+
+        public static readonly DependencyProperty ShowTabCloseButtonsProperty = DependencyProperty.Register(
+            "ShowTabCloseButtons",
+            typeof(bool),
+            typeof(FabTabControl),
+            new PropertyMetadata(true));
 
         private ContentTabView _contentTabView = null;
         private bool _showContentsTab = true;
         private bool _contentsTabAdded;
         private ComboBox _contentsTabComboBox;
-        private bool _showTabCloseButtons = true;
         private bool _allowMultiLineTabHeaders = false;
         private bool _itemsChanging = false;
         private bool _allowDragAndDropTabReordering = true;
@@ -72,8 +97,8 @@ namespace FabTab
 
         public bool ShowTabCloseButtons
         {
-            get { return _showTabCloseButtons; }
-            set { _showTabCloseButtons = value; }
+            get { return (bool)this.GetValue(ShowTabCloseButtonsProperty); }
+            set { this.SetValue(ShowTabCloseButtonsProperty, value); }
         }
 
         public bool AllowMultiLineTabHeaders
@@ -555,15 +580,22 @@ namespace FabTab
             if (this.ShowContentsTab && !_itemsChanging)
             {
                 _itemsStrategy.JuggleHiddenContent(e, args => base.OnSelectionChanged(args));
-                
+
                 //this only needs to happen if we are in this method because the user actually
                 //change the tab they selected, and not when new items are added or removed
                 //to the collection and ForceRenderItems  (which forces selection of all items)
                 //is called from OnItemsChanged---thus the _itemsChanging check above
                 UpdateContentsTabViewsIfNecessary();
             }
-            
-            base.OnSelectionChanged(e);
+
+            try
+            {
+                base.OnSelectionChanged(e);
+            }
+            catch (Exception exc)
+            {
+                Debug.WriteLine(exc);
+            }
 
             DidSelectionChange = false;
         }
@@ -584,7 +616,7 @@ namespace FabTab
             if(_itemsStrategy != null)
                 _itemsStrategy.ForceItemsRender();
         }
-        
+
         private void RemoveContentsTab()
         {
             if(_itemsStrategy != null)
@@ -611,7 +643,7 @@ namespace FabTab
             {
                 this.ContentTabHeaderComboBoxStyle = this.TryFindResource("ComboBoxDefaultStyle") as Style;
             }
-            
+
             //wire up the tabitems wired up directly in xaml
             if (this.Items != null)
             {
@@ -629,7 +661,6 @@ namespace FabTab
             }
         }
 
-        
         private void SetMultiLineTabHeadersOnHeaderPanel()
         {
             //configure the FabTabPanel appropriately, which would mean following the default
@@ -641,7 +672,6 @@ namespace FabTab
                 {
                     tabPanel.AllowMultiLineTabHeaders = true;
                 }
-
             }
         }
 
